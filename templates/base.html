@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}BuildConnect — Kenya's Building Professionals{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C8860A; --gold-light: #E8A020;
+      --dark: #0F1410; --dark-2: #1A2020; --dark-3: #242E28;
+      --green: #2E6B3E; --green-light: #3A8A50;
+      --cream: #F5F0E8; --cream-2: #EDE5D5;
+      --text: #2A2A2A; --text-muted: #6B7280; --white: #FFFFFF;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.14);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text); min-height:100vh; }
+    nav { background:var(--dark); position:sticky; top:0; z-index:100; border-bottom:1px solid rgba(200,134,10,0.3); }
+    .nav-inner { max-width:1280px; margin:0 auto; padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:68px; }
+    .logo { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--white); text-decoration:none; }
+    .logo span { color:var(--gold); }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.9rem; font-weight:500; transition:color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--gold); }
+    .nav-cta { background:var(--gold)!important; color:var(--dark)!important; padding:0.5rem 1.2rem; border-radius:4px; font-weight:600!important; }
+    .nav-cta:hover { background:var(--gold-light)!important; }
+    .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+    .btn { display:inline-block; padding:0.75rem 1.75rem; border-radius:4px; font-weight:600; font-size:0.9rem; text-decoration:none; cursor:pointer; border:none; transition:all 0.2s; font-family:'DM Sans',sans-serif; }
+    .btn-gold { background:var(--gold); color:var(--dark); }
+    .btn-gold:hover { background:var(--gold-light); transform:translateY(-1px); }
+    .btn-outline { background:transparent; color:var(--white); border:1.5px solid rgba(255,255,255,0.4); }
+    .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+    .btn-green { background:var(--green); color:var(--white); }
+    .btn-green:hover { background:var(--green-light); transform:translateY(-1px); }
+    /* Messages */
+    .messages { max-width:1280px; margin:1rem auto; padding:0 2rem; }
+    .alert { padding:1rem 1.5rem; border-radius:6px; margin-bottom:0.5rem; font-size:0.95rem; }
+    .alert-success { background:#D1FAE5; color:#065F46; border-left:4px solid #10B981; }
+    .alert-error { background:#FEE2E2; color:#991B1B; border-left:4px solid #EF4444; }
+    /* Footer */
+    footer { background:var(--dark); color:rgba(255,255,255,0.6); padding:3rem 2rem 1.5rem; margin-top:5rem; }
+    .footer-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; }
+    .footer-col h4 { color:var(--gold); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem; font-weight:600; }
+    .footer-col ul { list-style:none; }
+    .footer-col ul li { margin-bottom:0.5rem; }
+    .footer-col ul li a { color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.875rem; transition:color 0.2s; }
+    .footer-col ul li a:hover { color:var(--gold); }
+    .footer-bottom { max-width:1280px; margin:2rem auto 0; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; font-size:0.8rem; }
+    @media(max-width:768px) { .footer-inner{grid-template-columns:1fr 1fr;} .nav-links{display:none;} }
+  </style>
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="{% url 'index' %}" class="logo">Build<span>Connect</span></a>
+    <ul class="nav-links">
+      <li><a href="{% url 'index' %}" {% if request.resolver_match.url_name == 'index' %}class="active"{% endif %}>Home</a></li>
+      <li><a href="{% url 'professionals_list' %}" {% if 'professional' in request.resolver_match.url_name %}class="active"{% endif %}>Find Professionals</a></li>
+      <li><a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>About</a></li>
+      <li><a href="{% url 'contact' %}" class="nav-cta {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Get a Quote</a></li>
+    </ul>
+  </div>
+</nav>
+
+{% if messages %}
+<div class="messages">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% block content %}{% endblock %}
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="{% url 'index' %}" class="logo" style="font-size:1.2rem;">Build<span>Connect</span></a>
+      <p style="margin-top:1rem;font-size:0.875rem;line-height:1.7;">Connecting clients with Kenya's most trusted building and construction professionals.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="{% url 'professionals_list' %}?category=architect">Architects</a></li>
+        <li><a href="{% url 'professionals_list' %}?category=contractor">Contractors</a></li>
+        <li><a href="{% url 'professionals_list' %}?category=surveyor">Surveyors</a></li>
+        <li><a href="{% url 'professionals_list' %}?category=structural-engineer">Structural Engineers</a></li>
+        <li><a href="{% url 'professionals_list' %}?category=landscaper">Landscapers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="{% url 'about' %}">About Us</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+        <li><a href="/admin/">Admin Panel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:info@buildconnect.co.ke">info@buildconnect.co.ke</a></li>
+        <li><a href="tel:+254700000000">+254 700 000 000</a></li>
+        <li><a href="#">Nairobi, Kenya</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 BuildConnect Kenya. All rights reserved.</span>
+    <span><a href="/admin/" style="color:var(--gold);text-decoration:none;">Admin Dashboard →</a></span>
+  </div>
+</footer>
+</body>
+</html>
