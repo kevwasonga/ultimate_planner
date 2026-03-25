@@ -1,0 +1,400 @@
+[
+  {
+    "model": "professionals.sitestats",
+    "pk": 1,
+    "fields": {
+      "cities_served": 4,
+      "satisfaction_percent": 98,
+      "tagline": "Kenya's #1 Building Professionals Network"
+    }
+  },
+  {
+    "model": "professionals.category",
+    "pk": 1,
+    "fields": {
+      "name": "Architect",
+      "slug": "architect",
+      "icon": "🏛️",
+      "description": "Creative design, building plans, permits, and spatial expertise for residential and commercial spaces.",
+      "color": "#C8860A"
+    }
+  },
+  {
+    "model": "professionals.category",
+    "pk": 2,
+    "fields": {
+      "name": "Building Contractor",
+      "slug": "contractor",
+      "icon": "🏗️",
+      "description": "Licensed contractors to manage and execute construction works from foundation to finishing.",
+      "color": "#2E6B3E"
+    }
+  },
+  {
+    "model": "professionals.category",
+    "pk": 3,
+    "fields": {
+      "name": "Surveyor",
+      "slug": "surveyor",
+      "icon": "📐",
+      "description": "Quantity surveying, cost estimation, land boundary surveys, and property valuations.",
+      "color": "#1A4A7A"
+    }
+  },
+  {
+    "model": "professionals.category",
+    "pk": 4,
+    "fields": {
+      "name": "Structural Engineer",
+      "slug": "structural-engineer",
+      "icon": "⚙️",
+      "description": "Structural design, analysis, load calculations, and safety assessments for any build.",
+      "color": "#7A1A1A"
+    }
+  },
+  {
+    "model": "professionals.category",
+    "pk": 5,
+    "fields": {
+      "name": "Construction Manager",
+      "slug": "construction-manager",
+      "icon": "📋",
+      "description": "End-to-end project management ensuring quality, timeline, and budget adherence.",
+      "color": "#4A2A7A"
+    }
+  },
+  {
+    "model": "professionals.category",
+    "pk": 6,
+    "fields": {
+      "name": "Landscaper",
+      "slug": "landscaper",
+      "icon": "🌿",
+      "description": "Outdoor design, garden planning, irrigation, and green space transformation.",
+      "color": "#2A5A2A"
+    }
+  },
+  {
+    "model": "professionals.professional",
+    "pk": 1,
+    "fields": {
+      "name": "Amara Osei",
+      "category": 1,
+      "specialty": "Residential & Commercial Design",
+      "location": "Nairobi, Kenya",
+      "bio": "Award-winning architect with 12+ years designing sustainable spaces across East Africa. Specialises in blending modern aesthetics with local materials and climate-responsive design principles.",
+      "experience_years": 12,
+      "price_per_hour": "8000.00",
+      "phone": "+254 700 123 456",
+      "email": "amara.osei@buildconnect.co.ke",
+      "website": "",
+      "photo": "",
+      "availability": "available",
+      "is_verified": true,
+      "is_featured": true,
+      "projects_completed": 143,
+      "created_at": "2024-01-15T08:00:00Z",
+      "updated_at": "2024-01-15T08:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.professional",
+    "pk": 2,
+    "fields": {
+      "name": "James Kariuki",
+      "category": 2,
+      "specialty": "General Construction & Renovation",
+      "location": "Nairobi, Kenya",
+      "bio": "Licensed building contractor specialising in large-scale residential complexes and office buildings. Over 18 years delivering projects across Nairobi and Central Kenya, with a reputation for quality and punctuality.",
+      "experience_years": 18,
+      "price_per_hour": "5000.00",
+      "phone": "+254 711 234 567",
+      "email": "james.kariuki@buildconnect.co.ke",
+      "website": "",
+      "photo": "",
+      "availability": "available",
+      "is_verified": true,
+      "is_featured": true,
+      "projects_completed": 312,
+      "created_at": "2024-01-16T08:00:00Z",
+      "updated_at": "2024-01-16T08:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.professional",
+    "pk": 3,
+    "fields": {
+      "name": "Dr. Fatuma Mwangi",
+      "category": 3,
+      "specialty": "Quantity & Land Surveying",
+      "location": "Mombasa, Kenya",
+      "bio": "Registered surveyor offering precise quantity surveying, cost estimation, and land boundary services. PhD in Geomatics from University of Nairobi. Trusted by developers across the Coast region.",
+      "experience_years": 15,
+      "price_per_hour": "6500.00",
+      "phone": "+254 722 345 678",
+      "email": "fatuma.mwangi@buildconnect.co.ke",
+      "website": "",
+      "photo": "",
+      "availability": "available",
+      "is_verified": true,
+      "is_featured": true,
+      "projects_completed": 201,
+      "created_at": "2024-01-17T08:00:00Z",
+      "updated_at": "2024-01-17T08:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.professional",
+    "pk": 4,
+    "fields": {
+      "name": "Eng. David Otieno",
+      "category": 4,
+      "specialty": "Structural Analysis & Design",
+      "location": "Kisumu, Kenya",
+      "bio": "Structural engineer with expertise in high-rise buildings, bridges, and earthquake-resistant design. Registered with the Engineers Board of Kenya. Has worked on landmark projects in Kisumu and Nairobi.",
+      "experience_years": 10,
+      "price_per_hour": "9000.00",
+      "phone": "+254 733 456 789",
+      "email": "david.otieno@buildconnect.co.ke",
+      "website": "",
+      "photo": "",
+      "availability": "available",
+      "is_verified": true,
+      "is_featured": true,
+      "projects_completed": 88,
+      "created_at": "2024-01-18T08:00:00Z",
+      "updated_at": "2024-01-18T08:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.professional",
+    "pk": 5,
+    "fields": {
+      "name": "Grace Njoroge",
+      "category": 5,
+      "specialty": "Project Management & Site Supervision",
+      "location": "Nairobi, Kenya",
+      "bio": "PMP-certified construction manager delivering projects on time and within budget since 2015. Manages multi-contractor sites and specialises in residential estates and mixed-use developments.",
+      "experience_years": 9,
+      "price_per_hour": "7500.00",
+      "phone": "+254 744 567 890",
+      "email": "grace.njoroge@buildconnect.co.ke",
+      "website": "",
+      "photo": "",
+      "availability": "available",
+      "is_verified": true,
+      "is_featured": true,
+      "projects_completed": 67,
+      "created_at": "2024-01-19T08:00:00Z",
+      "updated_at": "2024-01-19T08:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.professional",
+    "pk": 6,
+    "fields": {
+      "name": "Samuel Waweru",
+      "category": 6,
+      "specialty": "Garden Design & Landscape Architecture",
+      "location": "Nakuru, Kenya",
+      "bio": "Creative landscaper transforming outdoor spaces with indigenous plants and modern design principles. Certified landscape architect with a passion for sustainable and water-wise gardens.",
+      "experience_years": 8,
+      "price_per_hour": "4000.00",
+      "phone": "+254 755 678 901",
+      "email": "samuel.waweru@buildconnect.co.ke",
+      "website": "",
+      "photo": "",
+      "availability": "available",
+      "is_verified": true,
+      "is_featured": true,
+      "projects_completed": 176,
+      "created_at": "2024-01-20T08:00:00Z",
+      "updated_at": "2024-01-20T08:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.professional",
+    "pk": 7,
+    "fields": {
+      "name": "Aisha Abdullahi",
+      "category": 1,
+      "specialty": "Interior & Urban Design",
+      "location": "Nairobi, Kenya",
+      "bio": "Passionate about blending Swahili coastal aesthetics with contemporary architecture. Has designed boutique hotels, upscale residences, and cultural centres across Kenya and Tanzania.",
+      "experience_years": 7,
+      "price_per_hour": "7000.00",
+      "phone": "+254 766 789 012",
+      "email": "aisha.abdullahi@buildconnect.co.ke",
+      "website": "",
+      "photo": "",
+      "availability": "busy",
+      "is_verified": true,
+      "is_featured": false,
+      "projects_completed": 55,
+      "created_at": "2024-01-21T08:00:00Z",
+      "updated_at": "2024-01-21T08:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.professional",
+    "pk": 8,
+    "fields": {
+      "name": "Peter Muthoni",
+      "category": 2,
+      "specialty": "Road & Infrastructure Construction",
+      "location": "Eldoret, Kenya",
+      "bio": "Veteran contractor with vast experience in roads, drainage systems, and public infrastructure. Has completed projects for county governments and national agencies across the Rift Valley region.",
+      "experience_years": 22,
+      "price_per_hour": "6000.00",
+      "phone": "+254 777 890 123",
+      "email": "peter.muthoni@buildconnect.co.ke",
+      "website": "",
+      "photo": "",
+      "availability": "available",
+      "is_verified": true,
+      "is_featured": false,
+      "projects_completed": 423,
+      "created_at": "2024-01-22T08:00:00Z",
+      "updated_at": "2024-01-22T08:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.professional",
+    "pk": 9,
+    "fields": {
+      "name": "Eng. Rose Kamau",
+      "category": 4,
+      "specialty": "Foundation & Geotechnical Engineering",
+      "location": "Nairobi, Kenya",
+      "bio": "Specialist in complex foundation systems and soil analysis for challenging terrains. Has resolved structural problems on existing buildings and designed foundations for high-rises in Nairobi's CBD.",
+      "experience_years": 14,
+      "price_per_hour": "8500.00",
+      "phone": "+254 788 901 234",
+      "email": "rose.kamau@buildconnect.co.ke",
+      "website": "",
+      "photo": "",
+      "availability": "available",
+      "is_verified": true,
+      "is_featured": false,
+      "projects_completed": 109,
+      "created_at": "2024-01-23T08:00:00Z",
+      "updated_at": "2024-01-23T08:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.review",
+    "pk": 1,
+    "fields": {
+      "professional": 1,
+      "client_name": "John Kamau",
+      "client_email": "john.k@email.com",
+      "rating": 5,
+      "comment": "Amara designed our family home beautifully. She listened to all our requirements and produced plans that exceeded our expectations. Highly recommended!",
+      "is_approved": true,
+      "created_at": "2024-02-10T10:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.review",
+    "pk": 2,
+    "fields": {
+      "professional": 1,
+      "client_name": "Wanjiku Ndungu",
+      "client_email": "wanjiku@email.com",
+      "rating": 5,
+      "comment": "Professional, creative and very detail oriented. The 3D visualisations she provided helped us understand the final look before construction started.",
+      "is_approved": true,
+      "created_at": "2024-02-20T10:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.review",
+    "pk": 3,
+    "fields": {
+      "professional": 2,
+      "client_name": "Moses Odhiambo",
+      "client_email": "moses.o@email.com",
+      "rating": 5,
+      "comment": "James completed our 4-bedroom house on time and within budget. His team was professional and the workmanship was top quality. Would hire again.",
+      "is_approved": true,
+      "created_at": "2024-03-05T10:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.review",
+    "pk": 4,
+    "fields": {
+      "professional": 3,
+      "client_name": "Fatima Hassan",
+      "client_email": "",
+      "rating": 5,
+      "comment": "Dr. Mwangi's quantity survey saved us a lot of money by identifying areas where we could optimise costs without compromising quality.",
+      "is_approved": true,
+      "created_at": "2024-03-12T10:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.review",
+    "pk": 5,
+    "fields": {
+      "professional": 5,
+      "client_name": "Daniel Kipchoge",
+      "client_email": "",
+      "rating": 4,
+      "comment": "Grace managed our commercial project with great skill. Communication was excellent and she kept all contractors aligned. Minor delays early on but overall very impressed.",
+      "is_approved": true,
+      "created_at": "2024-03-18T10:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.inquiry",
+    "pk": 1,
+    "fields": {
+      "name": "Alice Wambua",
+      "email": "alice.w@gmail.com",
+      "phone": "+254 700 111 222",
+      "service_category": 1,
+      "location": "Karen, Nairobi",
+      "message": "I need an architect to design a 5-bedroom residential house on a 1/2 acre plot in Karen. Budget is around KSh 15 million for construction.",
+      "status": "new",
+      "admin_notes": "",
+      "assigned_to": null,
+      "created_at": "2024-03-20T09:00:00Z",
+      "updated_at": "2024-03-20T09:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.inquiry",
+    "pk": 2,
+    "fields": {
+      "name": "Robert Maina",
+      "email": "rob.maina@company.co.ke",
+      "phone": "+254 722 333 444",
+      "service_category": 2,
+      "location": "Westlands, Nairobi",
+      "message": "Looking for a contractor to renovate our office space on the 3rd floor of a building in Westlands. Approximately 2000 sq ft. Need it done within 6 weeks.",
+      "status": "contacted",
+      "admin_notes": "Called client on 22nd March. Forwarded details to James Kariuki.",
+      "assigned_to": 2,
+      "created_at": "2024-03-19T14:00:00Z",
+      "updated_at": "2024-03-22T10:00:00Z"
+    }
+  },
+  {
+    "model": "professionals.inquiry",
+    "pk": 3,
+    "fields": {
+      "name": "Mary Achieng",
+      "email": "mary.a@email.com",
+      "phone": "+254 733 555 666",
+      "service_category": 6,
+      "location": "Runda, Nairobi",
+      "message": "We have a large garden that needs a complete redesign. Want indigenous plants, a water feature, and a children's play area.",
+      "status": "resolved",
+      "admin_notes": "Connected with Samuel Waweru. Project completed successfully.",
+      "assigned_to": 6,
+      "created_at": "2024-03-10T11:00:00Z",
+      "updated_at": "2024-03-28T09:00:00Z"
+    }
+  }
+]
