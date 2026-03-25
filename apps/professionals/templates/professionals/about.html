@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+{% block title %}About BuildConnect — Kenya's Building Professionals{% endblock %}
+
+{% block extra_css %}
+<style>
+  .about-hero {
+    background: var(--dark); padding: 5rem 2rem;
+    position: relative; overflow: hidden;
+    border-bottom: 1px solid rgba(200,134,10,0.15);
+  }
+  .about-hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,134,10,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,134,10,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  .about-hero-inner {
+    max-width: 760px; margin: 0 auto; text-align: center; position: relative; z-index: 2;
+  }
+  .about-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--white);
+    margin-bottom: 1.25rem; line-height: 1.1;
+  }
+  .about-hero h1 em { color: var(--gold); font-style: normal; }
+  .about-hero p { color: rgba(255,255,255,0.6); font-size: 1.1rem; line-height: 1.75; }
+
+  .mission-section { padding: 6rem 0; }
+  .mission-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .mission-text h2 {
+    font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900;
+    margin-bottom: 1.25rem; line-height: 1.15;
+  }
+  .mission-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+  .mission-visual {
+    background: var(--dark); border-radius: 12px; padding: 2.5rem;
+    border: 1px solid rgba(200,134,10,0.2);
+  }
+  .mission-visual h3 {
+    color: var(--white); font-family: 'Playfair Display', serif;
+    margin-bottom: 1.5rem; font-size: 1.2rem;
+  }
+  .mission-stat { margin-bottom: 1.75rem; }
+  .mission-stat:last-child { margin-bottom: 0; }
+  .mission-stat .label {
+    color: rgba(255,255,255,0.4); font-size: 0.78rem;
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem;
+  }
+  .bar-row { display: flex; align-items: center; gap: 1rem; }
+  .bar-track { flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--gold); border-radius: 3px; }
+  .bar-val { color: var(--white); font-weight: 700; font-size: 0.9rem; min-width: 36px; text-align: right; }
+
+  .cats-overview { padding: 5rem 0; background: var(--dark-2); }
+  .cats-overview-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .cats-overview .sh { text-align: center; margin-bottom: 3rem; }
+  .cats-overview .sh h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; color: var(--white); }
+  .cats-overview .sh p { color: rgba(255,255,255,0.4); margin-top: 0.5rem; }
+  .cats-table { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .cats-table-item {
+    background: var(--dark-3); border-radius: 8px; padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 1rem;
+    text-decoration: none; color: var(--white); transition: border-color 0.2s;
+  }
+  .cats-table-item:hover { border-color: rgba(200,134,10,0.4); }
+  .cats-table-item .icon { font-size: 2rem; flex-shrink: 0; }
+  .cats-table-item h4 { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem; }
+  .cats-table-item p { color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+
+  .values-section { padding: 6rem 0; }
+  .values-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .values-header { text-align: center; margin-bottom: 3.5rem; }
+  .values-header h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .value-card { padding: 2rem; background: var(--white); border-radius: 10px; box-shadow: var(--shadow); }
+  .value-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .value-card h3 { font-weight: 700; margin-bottom: 0.5rem; }
+  .value-card p { color: var(--text-muted); font-size: 0.875rem; line-height: 1.65; }
+
+  .team-section { padding: 5rem 0; }
+  .team-section .sh { text-align: center; margin-bottom: 3rem; }
+  .team-section .sh h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; }
+  .team-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .team-card { background: var(--white); border-radius: 10px; padding: 2rem; text-align: center; box-shadow: var(--shadow); }
+  .team-avatar {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: var(--dark); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.1rem;
+    margin: 0 auto 1rem;
+  }
+  .team-name { font-weight: 700; margin-bottom: 0.2rem; }
+  .team-role { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .team-bio { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.75rem; line-height: 1.6; }
+
+  @media (max-width: 860px) {
+    .mission-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cats-table, .values-grid { grid-template-columns: 1fr 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .cats-table, .values-grid, .team-grid { grid-template-columns: 1fr; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<div class="about-hero">
+  <div class="about-hero-grid"></div>
+  <div class="about-hero-inner">
+    <div style="color:var(--gold);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:1rem;">About BuildConnect</div>
+    <h1>Building <em>Kenya's</em> Future,<br>One Project at a Time</h1>
+    <p>We bridge the gap between clients and qualified building professionals — making quality construction accessible, transparent, and trustworthy across East Africa.</p>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="mission-section">
+  <div class="mission-inner">
+    <div class="mission-text">
+      <div style="color:var(--gold);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;">Our Mission</div>
+      <h2>Connecting Expertise with Ambition</h2>
+      <p>Founded in Nairobi, BuildConnect was born from a simple frustration: finding a reliable, qualified construction professional in Kenya was unnecessarily difficult. Clients struggled to verify credentials, compare expertise, and connect with trustworthy experts.</p>
+      <p>We built the platform we wished existed — a curated marketplace where every professional is vetted, every review is genuine, and every connection leads to quality work.</p>
+      <p>Today, we serve clients across Kenya's major cities, helping them bring homes, offices, gardens, and infrastructure projects to life with confidence.</p>
+      <div style="margin-top:2rem;">
+        <a href="{% url 'professionals_list' %}" class="btn btn-gold">Browse Professionals</a>
+      </div>
+    </div>
+    <div class="mission-visual">
+      <h3>Platform Performance</h3>
+      <div class="mission-stat">
+        <div class="label">Client Satisfaction</div>
+        <div class="bar-row">
+          <div class="bar-track"><div class="bar-fill" style="width:{{ site_stats.settings.satisfaction_percent }}%"></div></div>
+          <div class="bar-val">{{ site_stats.settings.satisfaction_percent }}%</div>
+        </div>
+      </div>
+      <div class="mission-stat">
+        <div class="label">Professionals Verified</div>
+        <div class="bar-row">
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          <div class="bar-val">100%</div>
+        </div>
+      </div>
+      <div class="mission-stat">
+        <div class="label">On-Time Project Delivery</div>
+        <div class="bar-row">
+          <div class="bar-track"><div class="bar-fill" style="width:91%"></div></div>
+          <div class="bar-val">91%</div>
+        </div>
+      </div>
+      <div class="mission-stat">
+        <div class="label">Client Response Rate</div>
+        <div class="bar-row">
+          <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+          <div class="bar-val">95%</div>
+        </div>
+      </div>
+      <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08);">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;">
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gold);">{{ site_stats.total_professionals }}+</div>
+            <div style="color:rgba(255,255,255,0.4);font-size:0.75rem;">Professionals</div>
+          </div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gold);">{{ site_stats.total_projects }}+</div>
+            <div style="color:rgba(255,255,255,0.4);font-size:0.75rem;">Projects Done</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE CATEGORIES OVERVIEW -->
+<section class="cats-overview">
+  <div class="cats-overview-inner">
+    <div class="sh">
+      <div style="color:var(--gold);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;">What We Cover</div>
+      <h2>6 Building Disciplines, One Platform</h2>
+      <p>Every professional you need across the full construction lifecycle.</p>
+    </div>
+    <div class="cats-table">
+      {% for cat in categories %}
+      <a href="{% url 'professionals_list' %}?category={{ cat.slug }}" class="cats-table-item">
+        <div class="icon">{{ cat.icon }}</div>
+        <div>
+          <h4>{{ cat.name }}</h4>
+          <p>{{ cat.pro_count }} professional{{ cat.pro_count|pluralize }} available</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="values-inner">
+    <div class="values-header">
+      <div style="color:var(--gold);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;">Our Values</div>
+      <h2>What We Stand For</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🏆</div>
+        <h3>Quality First</h3>
+        <p>We rigorously verify every professional's credentials, licensing, and track record before they appear on our platform.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <h3>Trust & Transparency</h3>
+        <p>All reviews come from verified clients. We never filter or remove negative reviews — only real experiences are shown.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌍</div>
+        <h3>Built for Kenya</h3>
+        <p>We understand local building codes, regulations, and the unique challenges of construction across Kenya's diverse regions.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <h3>Speed of Connection</h3>
+        <p>From inquiry to first contact in under 24 hours. We know your project can't wait for slow processes.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💚</div>
+        <h3>Sustainability</h3>
+        <p>We encourage and highlight professionals who champion green building and environmentally responsible practices.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📈</div>
+        <h3>Professional Growth</h3>
+        <p>We help building professionals grow their businesses with visibility and a steady stream of quality clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div class="sh">
+    <div style="color:var(--gold);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;">Our People</div>
+    <h2>The Team Behind BuildConnect</h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">MN</div>
+      <div class="team-name">Michael Njoroge</div>
+      <div class="team-role">CEO & Co-Founder</div>
+      <p class="team-bio">Former architect with 15 years in the industry and a vision for a more transparent Kenyan construction market.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">SO</div>
+      <div class="team-name">Sarah Owino</div>
+      <div class="team-role">Head of Vetting</div>
+      <p class="team-bio">Ensures every professional on our platform meets rigorous licensing and quality standards before going live.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">BM</div>
+      <div class="team-name">Brian Mutua</div>
+      <div class="team-role">CTO</div>
+      <p class="team-bio">Leads our engineering team, building the technology that powers seamless connections between clients and professionals.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div style="background:var(--dark);padding:5rem 2rem;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--white);font-weight:900;margin-bottom:1rem;">Ready to Find Your Expert?</h2>
+  <p style="color:rgba(255,255,255,0.55);margin-bottom:2rem;font-size:1.05rem;">Browse Kenya's most trusted building professionals and start your project today.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+    <a href="{% url 'professionals_list' %}" class="btn btn-gold">Find Professionals →</a>
+    <a href="{% url 'contact' %}" class="btn btn-outline">Get a Free Quote</a>
+  </div>
+</div>
+
+{% endblock %}

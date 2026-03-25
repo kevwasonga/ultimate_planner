@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% block title %}BuildConnect — Find Your Building Professional in Kenya{% endblock %}
+
+{% block extra_css %}
+<style>
+  .hero { background:var(--dark); min-height:88vh; display:flex; align-items:center; position:relative; overflow:hidden; }
+  .hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(200,134,10,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(200,134,10,0.07) 1px,transparent 1px); background-size:60px 60px; }
+  .hero-glow { position:absolute; top:-20%; right:-10%; width:700px; height:700px; border-radius:50%; background:radial-gradient(circle,rgba(200,134,10,0.12) 0%,transparent 70%); }
+  .hero-inner { max-width:1280px; margin:0 auto; padding:4rem 2rem; position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+  .hero-label { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(200,134,10,0.12); border:1px solid rgba(200,134,10,0.3); color:var(--gold); padding:0.4rem 1rem; border-radius:999px; font-size:0.78rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1.5rem; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; color:var(--white); line-height:1.1; margin-bottom:1.5rem; }
+  .hero h1 em { color:var(--gold); font-style:normal; }
+  .hero p { color:rgba(255,255,255,0.65); font-size:1.1rem; line-height:1.75; margin-bottom:2.5rem; }
+  .hero-ctas { display:flex; gap:1rem; flex-wrap:wrap; }
+  .search-bar { background:var(--dark-3); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:1.5rem; margin-top:2rem; }
+  .search-bar h3 { font-size:0.85rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:1rem; font-weight:600; }
+  .search-row { display:flex; gap:0.75rem; }
+  .search-row select,.search-row input { flex:1; padding:0.75rem 1rem; border:1.5px solid rgba(255,255,255,0.1); border-radius:4px; font-family:'DM Sans',sans-serif; font-size:0.9rem; color:rgba(255,255,255,0.8); background:var(--dark-2); }
+  .search-row button { background:var(--gold); color:var(--dark); border:none; padding:0.75rem 1.5rem; border-radius:4px; font-weight:700; cursor:pointer; font-family:'DM Sans',sans-serif; white-space:nowrap; transition:background 0.2s; }
+  .search-row button:hover { background:var(--gold-light); }
+  .hero-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:2rem; }
+  .stat { text-align:center; padding:1rem; }
+  .stat-num { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:900; color:var(--gold); line-height:1; }
+  .stat-label { color:rgba(255,255,255,0.5); font-size:0.8rem; margin-top:0.25rem; }
+  .section-header { text-align:center; margin-bottom:3.5rem; }
+  .section-eyebrow { color:var(--gold); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; font-weight:600; margin-bottom:0.75rem; }
+  .section-header h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); font-weight:900; color:var(--dark); margin-bottom:1rem; }
+  .section-header p { color:var(--text-muted); font-size:1.05rem; max-width:540px; margin:0 auto; }
+  .cats-section { padding:6rem 0; }
+  .cats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  .cat-card { background:var(--white); border-radius:10px; padding:2rem; text-decoration:none; color:var(--text); border:1.5px solid transparent; box-shadow:var(--shadow); transition:all 0.25s; position:relative; overflow:hidden; }
+  .cat-card::before { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--card-color,var(--gold)); transform:scaleX(0); transition:transform 0.3s; }
+  .cat-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:rgba(200,134,10,0.2); }
+  .cat-card:hover::before { transform:scaleX(1); }
+  .cat-icon { font-size:2.5rem; margin-bottom:1rem; }
+  .cat-label { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; margin-bottom:0.5rem; }
+  .cat-desc { color:var(--text-muted); font-size:0.875rem; line-height:1.6; }
+  .cat-arrow { color:var(--gold); margin-top:1rem; font-weight:700; font-size:1.2rem; }
+  .pros-section { padding:5rem 0; background:var(--dark-2); }
+  .pros-section .section-header h2 { color:var(--white); }
+  .pros-section .section-header p { color:rgba(255,255,255,0.55); }
+  .pros-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  .pro-card { background:var(--dark-3); border-radius:10px; padding:1.75rem; border:1px solid rgba(255,255,255,0.06); transition:all 0.25s; text-decoration:none; color:var(--white); display:block; }
+  .pro-card:hover { transform:translateY(-4px); border-color:rgba(200,134,10,0.4); }
+  .pro-head { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+  .pro-avatar { width:52px; height:52px; border-radius:50%; background:var(--gold); color:var(--dark); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:0.85rem; font-family:'Playfair Display',serif; flex-shrink:0; }
+  .pro-name { font-weight:700; font-size:1rem; margin-bottom:0.2rem; }
+  .pro-specialty { color:rgba(255,255,255,0.5); font-size:0.8rem; }
+  .pro-cat-tag { display:inline-block; padding:0.2rem 0.6rem; background:rgba(200,134,10,0.15); color:var(--gold); border-radius:4px; font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.75rem; }
+  .pro-meta { display:flex; gap:1.5rem; margin-top:1rem; padding-top:1rem; border-top:1px solid rgba(255,255,255,0.07); }
+  .pro-meta-item { font-size:0.78rem; color:rgba(255,255,255,0.45); }
+  .pro-meta-item strong { color:var(--white); font-size:0.9rem; display:block; }
+  .steps-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; margin-top:3.5rem; position:relative; }
+  .steps-grid::before { content:''; position:absolute; top:2.25rem; left:15%; right:15%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .step { text-align:center; }
+  .step-num { width:48px; height:48px; border-radius:50%; background:var(--gold); color:var(--dark); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:900; font-size:1.2rem; margin:0 auto 1.25rem; }
+  .step h4 { font-weight:700; font-size:1rem; margin-bottom:0.5rem; }
+  .step p { color:var(--text-muted); font-size:0.875rem; line-height:1.6; }
+  .cta-band { background:var(--dark); padding:5rem 2rem; text-align:center; position:relative; overflow:hidden; }
+  .cta-band::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .cta-band h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); color:var(--white); font-weight:900; margin-bottom:1rem; }
+  .cta-band p { color:rgba(255,255,255,0.6); margin-bottom:2rem; font-size:1.05rem; }
+  @media(max-width:900px) { .hero-inner{grid-template-columns:1fr;gap:3rem;} .cats-grid,.pros-grid{grid-template-columns:repeat(2,1fr);} .steps-grid{grid-template-columns:1fr 1fr;} .steps-grid::before{display:none;} }
+  @media(max-width:600px) { .cats-grid,.pros-grid{grid-template-columns:1fr;} .search-row{flex-direction:column;} }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-label">🇰🇪 Kenya's #1 Building Professionals Network</div>
+      <h1>Build with <em>Confidence</em>. Connect with <em>Experts</em>.</h1>
+      <p>Instantly find and hire verified architects, contractors, surveyors, engineers, and landscapers across Kenya. Get your project done right — the first time.</p>
+      <div class="hero-ctas">
+        <a href="{% url 'professionals_list' %}" class="btn btn-gold">Find a Professional</a>
+        <a href="{% url 'contact' %}" class="btn btn-outline">Get a Free Quote</a>
+      </div>
+      <div class="search-bar">
+        <h3>Quick Search</h3>
+        <form class="search-row" method="get" action="{% url 'professionals_list' %}">
+          <select name="category">
+            <option value="">All Services</option>
+            {% for cat in categories %}
+            <option value="{{ cat.slug }}">{{ cat.icon }} {{ cat.name }}</option>
+            {% endfor %}
+          </select>
+          <input type="text" name="location" placeholder="Location (e.g. Nairobi)">
+          <button type="submit">Search →</button>
+        </form>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">{{ site_stats.total_professionals }}+</div><div class="stat-label">Verified Professionals</div></div>
+      <div class="stat"><div class="stat-num">{{ site_stats.total_projects }}+</div><div class="stat-label">Projects Completed</div></div>
+      <div class="stat"><div class="stat-num">{{ site_stats.settings.cities_served }}</div><div class="stat-label">Cities Covered</div></div>
+      <div class="stat"><div class="stat-num">{{ site_stats.settings.satisfaction_percent }}%</div><div class="stat-label">Client Satisfaction</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cats-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Our Services</div>
+      <h2>Every Building Professional You Need</h2>
+      <p>From concept to completion, find the right expert for every stage of your project.</p>
+    </div>
+    <div class="cats-grid">
+      {% for cat in categories %}
+      <a href="{% url 'professionals_list' %}?category={{ cat.slug }}" class="cat-card" style="--card-color:{{ cat.color }}">
+        <div class="cat-icon">{{ cat.icon }}</div>
+        <div class="cat-label">{{ cat.name }}</div>
+        <div class="cat-desc">{{ cat.description }}</div>
+        <div class="cat-arrow">→ {{ cat.pro_count }} professional{{ cat.pro_count|pluralize }}</div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="pros-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Top Rated</div>
+      <h2>Featured Professionals</h2>
+      <p>Hand-verified experts with proven track records across Kenya.</p>
+    </div>
+    <div class="pros-grid">
+      {% for pro in featured %}
+      <a href="{% url 'professional_detail' pro.pk %}" class="pro-card">
+        <div class="pro-head">
+          <div class="pro-avatar">{{ pro.initials }}</div>
+          <div>
+            <div class="pro-name">{{ pro.name }}</div>
+            <div class="pro-specialty">{{ pro.specialty }}</div>
+          </div>
+        </div>
+        <div class="pro-cat-tag">{{ pro.category.icon }} {{ pro.category.name }}</div>
+        <div style="color:#F59E0B;font-size:0.85rem;">★★★★★ {{ pro.average_rating }} ({{ pro.review_count }} reviews)</div>
+        <div class="pro-meta">
+          <div class="pro-meta-item"><strong>{{ pro.experience_years }}yr</strong>Experience</div>
+          <div class="pro-meta-item"><strong>{{ pro.projects_completed }}</strong>Projects</div>
+          <div class="pro-meta-item"><strong>{{ pro.location|truncatechars:10 }}</strong>Location</div>
+        </div>
+      </a>
+      {% empty %}
+      <div style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.4);padding:3rem;">
+        No featured professionals yet. <a href="/admin/professionals/professional/" style="color:var(--gold);">Add some in Admin →</a>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="{% url 'professionals_list' %}" class="btn btn-gold">View All Professionals →</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:6rem 0;">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Simple Process</div>
+      <h2>How BuildConnect Works</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step"><div class="step-num">1</div><h4>Describe Your Project</h4><p>Tell us what you need — whether it's a house design, renovation, or landscaping job.</p></div>
+      <div class="step"><div class="step-num">2</div><h4>Browse Professionals</h4><p>Filter by specialty, location, and budget to find your ideal match.</p></div>
+      <div class="step"><div class="step-num">3</div><h4>Connect & Quote</h4><p>Contact professionals directly and receive tailored quotes for your project.</p></div>
+      <div class="step"><div class="step-num">4</div><h4>Build with Confidence</h4><p>Work with your chosen expert knowing they're verified and rated by past clients.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Ready to Start Your Project?</h2>
+  <p>Join thousands of Kenyans who found the right professional on BuildConnect.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+    <a href="{% url 'contact' %}" class="btn btn-gold">Get a Free Quote</a>
+    <a href="{% url 'professionals_list' %}" class="btn btn-outline">Browse Professionals</a>
+  </div>
+</div>
+{% endblock %}
