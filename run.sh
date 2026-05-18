@@ -15,7 +15,8 @@ COMMAND=$1
 
 case $COMMAND in
     "run")
-        $PYTHON manage.py runserver
+        PORT=${2:-8000}
+        $PYTHON manage.py runserver $PORT
         ;;
     "migrate")
         $PYTHON manage.py migrate
@@ -36,7 +37,7 @@ case $COMMAND in
         $PYTHON manage.py loaddata apps/professionals/fixtures/seed.json
         ;;
     *)
-        echo "Usage: ./run.sh {run|migrate|makemigrations|test|check|shell}"
+        echo "Usage: ./run.sh {run [port]|migrate|makemigrations|test|check|shell|seed}"
         exit 1
         ;;
 esac
