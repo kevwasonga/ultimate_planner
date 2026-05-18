@@ -53,7 +53,7 @@ The project uses a unified helper script `run.sh` to manage the lifecycle.
 ### 3. Available Commands
 | Command | Description |
 | :--- | :--- |
-| `./run.sh run` | Starts the development server |
+| `./run.sh run [port]` | Starts the development server (default port: 8000) |
 | `./run.sh migrate` | Applies database migrations |
 | `./run.sh makemigrations` | Generates new migration files |
 | `./run.sh test` | Runs the automated test suite |
@@ -68,7 +68,11 @@ The project uses Django's native test runner.
 
 ## 🐳 Docker Deployment
 ```bash
+# Run with default port 8000
 docker-compose -f docker/docker-compose.yml up --build
+
+# Run on a custom port (e.g., 8080)
+PORT=8080 docker-compose -f docker/docker-compose.yml up --build
 ```
 
 ---
